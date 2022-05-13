@@ -95,14 +95,33 @@ once tall the assertions aer done
 
 
 
+how to create a git repo
+
+1.navigate to the location where ur project is.
+2.Decide where to create the repo
+NO SUBREPOSITORIES-->please :)
+
+3.initialize the repo using     git init
+
+4. git add .
+5. git commit -m "message"
 
 
-How to create a git repo
-1. Navigate to the location where your project is.
-2. Decide where to create the repo
-No subrepositories
 
 
+remote repo
+warnings:
+one local repo must have only one remote repo
+
+1.git remote -v  (check if the connection is there or not)
+2.git remote add origin URL
+3.git branch -M main
+
+for a new repo
+all these above steps u only need to don once never again
+
+git push -u origin main  (first time)
+git push   (after the first time)
 
 
 
@@ -110,3 +129,294 @@ No subrepositories
 
 
 //https://drive.google.com/file/d/1BQA6XpVvf-g5D4zYg3cKl4J8FPr_r2IN/view
+
+*****************TestNG class02**************
+What Is TestNG.Xml?
+TestNG.xml file is a configuration file that helps in organizing our tests.
+It allows testers to create and handle multiple test classes, define test suites and tests.
+
+It makes a tester’s job easier by controlling the execution of
+ tests by putting all the test cases together and run it under one XML file.
+  This is a beautiful concept, without which, it is difficult to work in TestNG.
+
+Advantages Of TestNG.xml
+Major advantages of TestNG.xml file are:
+
+It provides parallel execution of test methods.
+It allows the dependency of one test method on another test method.
+It helps in prioritizing our test methods.
+It allows grouping of test methods into test groups.
+It supports the parameterization of test cases using @Parameters annotation.
+It helps in Data-driven testing using @DataProvider annotation.
+It has different types of assertions that help in validating the expected results with the actual results.
+It has different types of HTML reports, Extent reports, etc. for a better and clear understanding of our test summary.
+It has listeners who help in creating logs.
+
+Concepts Used In TestNG.xml
+#1) A Suite is represented by one XML file. It can contain one or more tests and is defined by the <suite> tag.
+
+Example: <suite name=”Testing Google Apps”>
+
+#2) A Test is represented by <test> and can contain one or more TestNG classes.
+
+Example: <test name=”Regression”>
+
+#3) A Class is a Java class that contains TestNG annotations. Here it is represented by the <class> tag and can contain one or more test methods.
+
+testNg XML:
+ gives u control over the execution of your whole project!!!!!!
+
+<suite>
+	<test>
+
+		<classes>
+			<class>
+
+				<method>
+				     <include =" method name"/>
+				</method>
+			</class>
+		</classes>
+
+
+
+		<packages>
+
+		<packages>
+
+	</test>
+</suite>
+
+
+
+1.Class wise execution
+you can control which class u want to execute using xml , u can execute multiple classes also
+e.g
+for one class
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/moazzam/Desktop/testNGbatch12new/TestNGBasicsBatch12">
+      <classes>
+          <class name="class01.BasicAnnotations"></class>
+
+      </classes>
+    </test>
+</suite>
+
+for two classes
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/moazzam/Desktop/testNGbatch12new/TestNGBasicsBatch12">
+      <classes>
+          <class name="class01.Priorities"></class>
+           <class name="class01.DependsOn"></class>
+      </classes>
+    </test>
+</suite>
+
+
+
+
+
+2.Mehtod wise execution
+you can control which method in a particular class to execute and which not to by using xml in testng
+e.g:
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="test">
+       <classes>
+           <class name="class01.BasicAnnotations">
+               <methods>
+                   <include name="bthirdTest"/>
+                   <exclude name="cfourthTest"/>
+               </methods>
+           </class>
+       </classes>
+    </test>
+</suite>
+
+here it will execute just the method bthird test located in class Basicannotations
+exclude eliminates all the methods u name , helps u actively run or not run a test case by xml
+
+
+3.Package wise execution
+you can run all the classes in one package using xml
+e.g
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="TestNGBasicsBatch12">
+    <packages>
+        <package name="class02"></package>
+    </packages>
+    </test>
+</suite>
+
+
+
+
+Important points
+1.you can not run duplicate classes in one test
+<test verbose="2" preserve-order="true" name="test">
+       <classes>
+           <class name="class01.BasicAnnotations">
+            <class name="class01.BasicAnnotations">
+           </class>
+       </classes>
+    </test>
+---->will not run it twice
+2.in order to run a class multiple times declare two test separately
+<test verbose="2" preserve-order="true" name="test">
+       <classes>
+           <class name="class01.BasicAnnotations">
+       </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="test">
+       <classes>
+           <class name="class01.BasicAnnotations">
+       </classes>
+    </test>
+
+--> will work
+
+
+
+@BeforeClass:
+this annotation is used to execute the method only once before the execution of the class
+
+@AfterClass:
+this annotation is used to execute the method only once after the execution of the class
+
+
+@BeforeTest:
+this annotation is used to execute the method only once before the execution of classes
+
+
+
+@Aftertest:
+this annotation is used to execute the method only once after the execution of classes
+
+
+
+whenever we run by groups
+the @beforeMethod and @after methods do not run
+because they are not under the tag of groups
+
+
+When we ran by method name
+@before method and aftermethod runs
+
+
+************************************ TestNG Class03 ************************************
+
+TestNG XML?
+help us to control the execution of the test cases
+
+1. <suite>
+      <test>
+           <classes
+                              Class name="class name"/>
+                                  Class name="class name"/>
+                                  <method>
+                                  <include name="method name"/>
+                                  </method>
+                                  </class>
+           </classes>
+           <packages>
+             <package name = "package name"/>
+
+             </packages>
+      </test>
+
+/<suite>
+
+@beforeMethod
+public void method1(){
+
+}
+@afterMethod
+public void method2(){
+
+}
+@Test
+public test(){
+
+}
+
+when we run a specific method from a class, if it has any before and after method they will also be executed even
+if we don't select the to run.
+
+
+**executing our test cases on group level
+
+1. when we execute in our XML using groups, by default the @beforeMethod and @afterMethod will not execute
+
+only the methods tagged under that particular group will be executed
+
+In order to deal with problem, because if we have any @beforeMethod where are doing some initialization
+we use the following methods
+i.e
+put (alwaysRun=True) in front of your @beforeMethod and @afterMethod
+
+whenever you are running by groups, and you get an error of Null pointer exception
+@beforMethod is set to alwaysRun=true
+
+-----------------------------------------------------
+
+
+Listeners:
+
+Listeners class lsiten to events like test failed /pass /skipped e.t.c
+once the testcase has executed
+and it either fails /pass /skips
+depending upon the status
+listeneres class takes you to the execution of the code that you have written for the scenarios
+if your test case fails/ pass or skips
+
+
+Implentation of listeners class:
+
+listeners class implements ITestListeneres
+which is an interface from TestNG
+and we overRide the functions according to our need
+
+after that you need to link the listeners class to the class on which you want it to listen
+that can be done using TextNG.XML
+
+u define ur <listeners> tag just under <suite> and then write down the classes u want it to listen to.
+
+
+
+
+DataProvider in TestNG:
+Data provider is used for data driven testing.
+use data provider for small data sets
+for greater one use excel
+
+if we want to declare our data set it must be under @dataProvider
+
+if we want our test case to utilize this dataprovider
+what do we need to do?
+@test(dataprovider ="name of dataprovider")
+public void test(){
+
+
+}
+
+Parallel Testing:
+
+
+*********************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
